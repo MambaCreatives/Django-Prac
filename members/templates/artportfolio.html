@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="pictures/moonseries4.jpg"
+    />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamba Creatives Art Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a.active {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 100px 20px 20px;
+        }
+
+        section {
+            display: none; /* Hide all sections by default */
+            margin-bottom: 40px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .category-list li {
+            width: 200px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .category-list li:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-list li img {
+            width: 100%;
+            height: auto;
+        }
+
+        .category-list li h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 30px;
+  width: 450px;
+  border-radius: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+::placeholder {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.form button {
+  align-self: flex-end;
+}
+
+.flex-column > label {
+  color: #151717;
+  font-weight: 600;
+}
+
+.inputForm {
+  border: 1.5px solid #ecedec;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.input {
+  margin-left: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 85%;
+  height: 100%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.inputForm:focus-within {
+  border: 1.5px solid #2d79f3;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.flex-row > div > label {
+  font-size: 14px;
+  color: black;
+  font-weight: 400;
+}
+
+.span {
+  font-size: 14px;
+  margin-left: 5px;
+  color: #2d79f3;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.button-submit {
+  margin: 20px 0 10px 0;
+  background-color: #151717;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.button-submit:hover {
+  background-color: #252727;
+}
+
+.p {
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.btn {
+  margin-top: 10px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  gap: 10px;
+  border: 1px solid #ededef;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.btn:hover {
+  border: 1px solid #2d79f3;
+  ;
+}
+
+    
+
+       
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Art Portfolio</h1>
+        <nav>
+            <ul>
+               
+                <li><a href="#pencil-drawings" class="nav-link">Pencil Drawings</a></li>
+                <li><a href="#paintings" class="nav-link">Paintings</a></li>
+                <li><a href="#thread-art" class="nav-link">Thread Art</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+       
+        <section id="pencil-drawings">
+            <h2>Pencil Drawings</h2>
+            <ul class="category-list">
+                <li>
+                    <img src="pictures/zfold 5.jpg" alt="Samsung Drawing">
+                    <h3>Samsung</h3>
+                </li>
+                <li>
+                    <img src="pictures/tecnophantom.jpg" alt="Tecno Drawing">
+                    <h3>Tecno</h3>
+                </li>
+                <li>
+                    <img src="pictures/iphone15.jpg" alt="iPhone Drawing">
+                    <h3>iPhone</h3>
+                </li>
+                <li>
+                    <img src="pictures/opporeno10.jpg" alt="Oppo Drawing">
+                    <h3>Oppo</h3>
+                </li>
+            </ul>
+        </section>
+        <section id="paintings">
+            <h2>Paintings</h2>
+            <ul class="category-list">
+                <li>
+                    <img src="pictures/moonseries1.jpg" alt="Moon Series 1 Painting">
+                    <h3>Moon Series 1</h3>
+                </li>
+                <li>
+                    <img src="pictures/moonseries2.jpg" alt="Moon Series 2 Painting">
+                    <h3>Moon Series 2</h3>
+                </li>
+                <li>
+                    <img src="pictures/moonseries3.jpg" alt="Moon Series 3 Painting">
+                    <h3>Moon Series 3</h3>
+                </li>
+                <li>
+                    <img src="pictures/moonseries4.jpg" alt="Moon Series 4 Painting">
+                    <h3>Moon Series 4</h3>
+                </li>
+            </ul>
+        </section>
+        <section id="thread-art">
+            <h2>Thread Art</h2>
+            <ul class="category-list">
+                <li>
+                    <img src="pictures/phones.jpg" alt="Phones Thread Art">
+                    <h3>Phones</h3>
+                </li>
+                <li>
+                    <img src="pictures/porsche.jpg" alt="Cars Thread Art">
+                   <h3>Cars</h3>
+                </li>
+                <li>
+                    <img src="pictures/Car art.jpg" alt="Cars Thread Art">
+                    <h3>Cars</h3>
+                    
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Mamba Creatives</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav ul li a');
+            const sections = document.querySelectorAll('main section');
+
+            // Smooth scrolling
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Highlight active link
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    link.classList.add('active');
+
+                    // Show selected section and hide others
+                    sections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.style.display = 'block';
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Initially display the first section
+            if (sections.length > 0) {
+                sections[0].style.display = 'block';
+                navLinks[0].classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
