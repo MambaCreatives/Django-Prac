@@ -8,7 +8,7 @@ def members(request):
   context ={
     'mymember':mymembers,
   }
-  return HttpResponse(template.render(context,request))
+  return HttpResponse(template.render(context, request))
 
 def details(request, id):
   mymember = Member.objects.get(id=id)
