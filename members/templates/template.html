@@ -2,13 +2,14 @@
 <html>
 <body>
     
-    {%if greeting != 1%}
-      <h1>Hello</h1>
-    {% elif greeting == 2%}
-      <h1>Welcome</h1>
-    {% else %}
-    <h1>Byee</h1>
-    {% endif %}
+   {%for x in members %}
+    <h1> {{x.id}} </h1>
+    <p>
+      {{x.firstname}}
+      {{x.lastname}}
+    </p>
+   {%endfor%}
+    
     
     <p>In views.py you can see how to import and fetch members from the database.</p>
 </body>
