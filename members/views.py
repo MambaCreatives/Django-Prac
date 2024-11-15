@@ -22,10 +22,10 @@ def main(request):
   return HttpResponse(template.render())
 
 def testing(request):
-  mymembers = Member.objects.all().values()
+  mymembers = Member.objects.all().order_by('id')
   template = loader.get_template('template.html')
   context ={
-     'members':mymembers,
+     'fruits':['Apple','Banana','Cherry','Mango'],
   }
   return HttpResponse(template.render(context,request))
   
