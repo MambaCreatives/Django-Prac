@@ -22,10 +22,11 @@ def main(request):
   return HttpResponse(template.render())
 
 def testing(request):
-  mymembers = Member.objects.all().order_by('id')
+  mydata = Member.objects.filter(firstname='Emil').values()
   template = loader.get_template('template.html')
   context ={
-     'fruits':['Apple','Banana','Cherry','Mango'],
+    'mymembers' :mydata,
+     
   }
   return HttpResponse(template.render(context,request))
   
