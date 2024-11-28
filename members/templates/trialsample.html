@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiArt - Innovative Online Art Gallery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #5A2D82;
+            --secondary-color: #E75480;
+            --accent-color: #FFD700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('/static/images/pattern.png');
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Featured Artworks */
+        .artwork-card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .artwork-image {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .ai-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        /* Features Section */
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        /* Categories */
+        .category-card {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+
+        /* Custom Buttons */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-palette"></i> DigiArt
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#gallery">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#categories">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary ms-2" href="/login">Sign In</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container hero-content">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Discover Authentic Art in the Digital Age</h1>
+                <p class="lead mb-4">Experience art like never before with our AI-powered gallery platform. Connect with artists, discover original pieces, and buy securely with M-Pesa.</p>
+                <div class="d-flex gap-3">
+                    <a href="#gallery" class="btn btn-light btn-lg">Explore Gallery</a>
+                    <a href="/register" class="btn btn-outline-light btn-lg">Join as Artist</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="/static/images/hero-art.png" alt="Art Collage" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Artworks -->
+<section class="py-5" id="gallery">
+    <div class="container">
+        <h2 class="text-center mb-5">Featured Artworks</h2>
+        <div class="row g-4">
+            {% for artwork in featured_artworks %}
+            <div class="col-md-4">
+                <div class="artwork-card">
+                    <div class="position-relative">
+                        <img src="{{ artwork.image.url }}" class="artwork-image w-100" alt="{{ artwork.title }}">
+                        {% if artwork.is_ai_verified %}
+                        <span class="ai-badge">
+                            <i class="fas fa-check-circle"></i> Original Artwork
+                        </span>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ artwork.title }}</h5>
+                        <p class="card-text text-muted">{{ artwork.artist }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="h5 mb-0">KSH {{ artwork.price }}</span>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-shopping-cart me-2"></i>Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Categories -->
+<section class="bg-light py-5" id="categories">
+    <div class="container">
+        <h2 class="text-center mb-5">Browse by Category</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="category-card">
+                    <img src="/static/images/pencil-art.jpg" class="w-100 h-100 object-fit-cover" alt="Pencil Drawings">
+                    <div class="category-overlay">
+                        <h3>Pencil Drawings</h3>
+                        <p class="mb-0">Explore detailed sketches and portraits</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="category-card">
+                    <img src="/static/images/paintings.jpg" class="w-100 h-100 object-fit-cover" alt="Paintings">
+                    <div class="category-overlay">
+                        <h3>Paintings</h3>
+                        <p class="mb-0">Discover colorful canvas artworks</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="category-card">
+                    <img src="/static/images/thread-art.jpg" class="w-100 h-100 object-fit-cover" alt="Thread Art">
+                    <div class="category-overlay">
+                        <h3>Thread Art</h3>
+                        <p class="mb-0">View unique thread-based creations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Why Choose DigiArt</h2>
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="feature-icon mx-auto">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h4>AI-Powered Authentication</h4>
+                <p>Our advanced AI technology verifies artwork authenticity and assists in categorization.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="feature-icon mx-auto">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h4>M-Pesa Integration</h4>
+                <p>Secure and convenient local payments through M-Pesa integration.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="feature-icon mx-auto">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h4>Artist Protection</h4>
+                <p>Verified profiles and secure transactions protect both artists and buyers.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-primary text-white py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Start Your Artistic Journey?</h2>
+        <p class="lead mb-4">Join our community of artists and art enthusiasts today.</p>
+        <a href="/register" class="btn btn-light btn-lg">Create Account</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-light py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>DigiArt</h5>
+                <p>Revolutionizing the art marketplace through technology and trust.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light">About Us</a></li>
+                    <li><a href="#" class="text-light">Terms of Service</a></li>
+                    <li><a href="#" class="text-light">Privacy Policy</a></li>
+                    <li><a href="#" class="text-light">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Connect With Us</h5>
+                <div class="social-links">
+                    <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="text-center">
+            <small>&copy; 2024 DigiArt. All rights reserved.</small>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
